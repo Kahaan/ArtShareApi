@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user.find(params[:id])
+    render json: @user
   end
 
   def edit
@@ -23,18 +25,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(params.require(:user).permit(:name, :email))
-    if user.save!
-      render json: user
+    @user = User.new(user_params)
+    if @user.save
+      render json: @user
     else
-      render json: user.errors.full_messages, status: :unprocessable_entity
+      render json: @user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to 'index'
+    render json: @user
   end
 
   private
@@ -44,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:username)
   end
 
 end
