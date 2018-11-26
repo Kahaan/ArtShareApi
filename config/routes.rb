@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  get 'artwork_shares/create'
-  get 'artwork_shares/destroy'
-  resources :users, only: [:create, :destroy, :index, :show, :update]
-  resources :artwork_share, only: [:create, :destroy]
+
+  resources :artworks, only: [:create, :destroy, :show, :update]
+
+  resources :users, only: [:create, :destroy, :index, :show, :update] do
+    resources :artworks, only: [:index]
+  end
+
+  resources :artwork_shares, only: [:create, :destroy]
+
 end

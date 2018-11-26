@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user
     else
-      render json: user.errors.full_messages
+      render json: @user.errors.full_messages
     end
   end
 
