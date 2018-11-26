@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'art_works/index'
-  get 'art_works/create'
-  get 'art_works/show'
-  get 'art_works/update'
-  get 'art_works/destroy'
+  get 'artwork_shares/create'
+  get 'artwork_shares/destroy'
   resources :users, only: [:create, :destroy, :index, :show, :update]
+  resources :artwork_share, only: [:create, :destroy]
 end
