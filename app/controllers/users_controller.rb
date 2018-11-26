@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = find_user
   end
 
   def update
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def create
